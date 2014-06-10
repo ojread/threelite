@@ -5,7 +5,10 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-var geometry = new THREE.BoxGeometry(1,1,1);
+// Window resize extension.
+var winResize = new THREEx.WindowResize(renderer, camera);
+
+var geometry = new THREE.CubeGeometry(1, 1, 1);
 var material = new THREE.MeshBasicMaterial({
 	color: 0x00ff00,
 	wireframe: true
@@ -17,12 +20,6 @@ camera.position.z = 2;
 
 var keyboard = new THREEx.KeyboardState();
 
-
-window.addEventListener('resize', function () {
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
-});
 
 function render() {
 	requestAnimationFrame(render);
